@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.sunasterisk.iflickr.data.model.User" />
+
+        <variable
+            name="post"
+            type="com.sunasterisk.iflickr.data.model.Post" />
+
+        <variable
+            name="photos"
+            type="com.sunasterisk.iflickr.data.model.Photos" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/actionBarProfile"
+            layout="@layout/custom_action_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageAvatarProfile"
+            avatarUrl="@{post.userAvatar}"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:layout_marginTop="@dimen/dp_24"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionBarProfile" />
+
+        <TextView
+            android:id="@+id/textProfileUsername"
+            style="@style/TextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@{user.firstName}"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageAvatarProfile" />
+
+        <Button
+            android:id="@+id/buttonFollow"
+            style="@style/TextOfButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button_follow"
+            android:text="@string/title_follow"
+            app:layout_constraintBottom_toBottomOf="@id/textProfileUsername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textProfileUsername"
+            app:layout_constraintTop_toTopOf="@id/textProfileUsername" />
+
+        <TextView
+            android:id="@+id/textProfileDes"
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@{user.profileDescription}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textProfileUsername" />
+
+        <TextView
+            android:id="@+id/textAddressTitle"
+            style="@style/TextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_32"
+            android:text="@string/title_address"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textProfileDes" />
+
+        <TextView
+            android:id="@+id/textAddressContent"
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_4"
+            android:text="@{user.country}"
+            app:layout_constraintBottom_toBottomOf="@id/textAddressTitle"
+            app:layout_constraintStart_toEndOf="@id/textAddressTitle"
+            app:layout_constraintTop_toTopOf="@id/textAddressTitle" />
+
+        <TextView
+            android:id="@+id/textTotalPostTitle"
+            style="@style/TextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_4"
+            android:text="@string/title_total_post"
+            app:layout_constraintBottom_toBottomOf="@id/textTotalPostContent"
+            app:layout_constraintEnd_toStartOf="@id/textTotalPostContent"
+            app:layout_constraintTop_toTopOf="@id/textTotalPostContent" />
+
+        <TextView
+            android:id="@+id/textTotalPostContent"
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:text="@{photos.total}"
+            app:layout_constraintBottom_toBottomOf="@id/textAddressTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textAddressTitle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPublicPhotos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textAddressTitle"
+            tools:listitem="@layout/item_photo_profile" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
