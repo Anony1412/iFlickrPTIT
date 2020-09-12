@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="post"
+            type="com.sunasterisk.iflickr.data.model.Post" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:background="@drawable/shape_item_new_feed"
+        android:padding="@dimen/dp_8">
+
+        <ImageView
+            android:id="@+id/imageOwnerAvatar"
+            avatarUrl="@{post.userAvatar}"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textOwnerName"
+            style="@style/TextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:text="@{post.username}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toBottomOf="@id/imageOwnerAvatar"
+            app:layout_constraintStart_toEndOf="@id/imageOwnerAvatar"
+            app:layout_constraintTop_toTopOf="@id/imageOwnerAvatar" />
+
+        <TextView
+            android:id="@+id/textPhotoSetTitle"
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@{post.photoSetTitle}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageOwnerAvatar" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pagerPhotoSet"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_400"
+            android:layout_marginTop="@dimen/dp_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textPhotoSetTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
